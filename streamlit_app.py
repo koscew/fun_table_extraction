@@ -27,7 +27,7 @@ if photo and b_p == 'Batter':
             else:
                 stats[8] = str(float(stats[8]))
             df.loc[row] = [
-                (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list_2[i-1])[-1] + "'" + stats[0]).replace(' ',''),
+                (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                 stats[1],
                 stats[2],
                 stats[3],
