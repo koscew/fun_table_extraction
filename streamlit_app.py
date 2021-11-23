@@ -65,7 +65,7 @@ if photo and b_p == 'Batter':
                     stats[8]
                 ]
                 row += 1
-    st.write(df.drop_duplicates(subnet=['NAME']))
+    st.write(df.drop_duplicates(subset=['NAME']))
 elif photo and b_p == 'Pichter':
     img = Image.open(photo)
     img = img.resize((2000, 900))
