@@ -71,9 +71,10 @@ if photo and b_p == 'Batter':
     df[cols] = df.apply(' '.join, axis=1)
     df.loc[len(df)] = ['NAME', 'AB', 'AVG', 'H', "HR", 'RBI', 'R', 'SB', 'OBP', cols]
     st.write(df[cols])
+
 elif photo and b_p == 'Pichter':
     img = Image.open(photo)
-    img = img.resize((2000, 900))
+    img = img.resize((3600 , 1200))
     strings_list = pytesseract.image_to_string(img, config='--psm 6').split("'")
     df = pd.DataFrame(columns = ['NAME', 'IP', 'ERA', 'W', "L", 'SV', 'SO', 'BB', 'WHIP'])
     row = 0
@@ -90,7 +91,7 @@ elif photo and b_p == 'Pichter':
             else:
                 stats[8] = str(float(stats[8]))
             df.loc[row] = [
-                re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list[i-1])[-1] + "'" + stats[0],
+                (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                 stats[1],
                 stats[2],
                 stats[3],
@@ -103,7 +104,7 @@ elif photo and b_p == 'Pichter':
             row += 1
     if photo_2:
         img_2 = Image.open(photo_2)
-        img_2 = img_2.resize((2000, 900))
+        img_2 = img_2.resize((3600, 1200))
         strings_list_2 = pytesseract.image_to_string(img_2, config='--psm 6').split("'")
         for i, stat in enumerate(strings_list_2):
             if i > 0:
@@ -117,7 +118,7 @@ elif photo and b_p == 'Pichter':
                 else:
                     stats[8] = str(float(stats[8]))
                 df.loc[row] = [
-                    re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list_2[i-1])[-1] + "'" + stats[0],
+                    (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list_2[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                     stats[1],
                     stats[2],
                     stats[3],
@@ -128,7 +129,12 @@ elif photo and b_p == 'Pichter':
                     stats[8]
                 ]
                 row += 1
-    st.write(df.drop_duplicates(subset=['NAME']))
+    df = df.drop_duplicates(subset=['NAME'])
+    st.write(df)
+    cols = ' '.join(df.columns)
+    df[cols] = df.apply(' '.join, axis=1)
+    df.loc[len(df)] = ['NAME', 'IP', 'ERA', 'W', "L", 'SV', 'SO', 'BB', 'WHIP']
+    st.write(df[cols])
 
 
 
