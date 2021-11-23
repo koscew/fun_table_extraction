@@ -41,7 +41,7 @@ if photo and b_p == 'Batter':
     if photo_2:
         img_2 = Image.open(photo_2)
         img_2 = img_2.resize((2000, 900))
-        strings_list_2 = pytesseract.image_to_string(img, config='--psm 6').split("'")
+        strings_list_2 = pytesseract.image_to_string(img_2, config='--psm 6').split("'")
         for i, stat in enumerate(strings_list_2):
             if i > 0:
                 stats = stat.replace('\n', ' ').split(' ')
