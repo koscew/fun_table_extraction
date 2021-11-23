@@ -82,11 +82,11 @@ elif photo and b_p == 'Pichter':
         if i > 0:
             #name = strings_list[i-1].replace('\n', ' ').split(' ')
             stats = stat.replace('\n', ' ').split(' ')
-            if float(stats[2]) > 50:
+            if float(stats[2]) > 22:
                 stats[2] = str(float(stats[2]) / 100)
             else:
                 stats[2] = str(float(stats[2]))
-            if float(stats[8]) > 1:
+            if float(stats[8]) > 22:
                 stats[8] = str(float(stats[8]) / 100)
             else:
                 stats[8] = str(float(stats[8]))
