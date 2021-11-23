@@ -2,4 +2,4 @@ streamlit
 Pillow
 pytesseract
 tesseract
-pyocr
+-U git+https://github.com/madmaze/pytesseract.git
