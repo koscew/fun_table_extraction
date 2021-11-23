@@ -17,7 +17,6 @@ if photo and b_p == 'Batter':
     row = 0
     for i, stat in enumerate(strings_list):
         if i > 0:
-            #name = strings_list[i-1].replace('\n', ' ').split(' ')
             stats = stat.replace('\n', ' ').split(' ')
             if float(stats[2]) > 1:
                 stats[2] = str(float(stats[2]) / 1000)
@@ -39,7 +38,33 @@ if photo and b_p == 'Batter':
                 stats[8]
             ]
             row += 1
-    st.write(df)
+        img = Image.open(photo)
+    img_2 = img_2.resize((2000, 900))
+    strings_list_2 = pytesseract.image_to_string(img, config='--psm 6').split("'")
+    for i, stat in enumerate(strings_list_2):
+        if i > 0:
+            stats = stat.replace('\n', ' ').split(' ')
+            if float(stats[2]) > 1:
+                stats[2] = str(float(stats[2]) / 1000)
+            else:
+                stats[2] = str(float(stats[2]))
+            if float(stats[8]) > 1:
+                stats[8] = str(float(stats[8]) / 1000)
+            else:
+                stats[8] = str(float(stats[8]))
+            df.loc[row] = [
+                re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list_2[i-1])[-1] + "'" + stats[0],
+                stats[1],
+                stats[2],
+                stats[3],
+                stats[4],
+                stats[5],
+                stats[6],
+                stats[7],
+                stats[8]
+            ]
+            row += 1
+    st.write(df.drop_duplicates(subnet='NAME'))
 elif photo and b_p == 'Pichter':
     img = Image.open(photo)
     img = img.resize((2000, 900))
