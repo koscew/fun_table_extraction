@@ -11,7 +11,7 @@ photo_2 = st.file_uploader('Upload another photo')
 
 if photo and b_p == 'Batter':
     img = Image.open(photo)
-    img = img.resize((3600, 1200))
+    img = img.resize((3600, 1260))
     strings_list = pytesseract.image_to_string(img, config='--psm 6').split("'")
     df = pd.DataFrame(columns = ['NAME', 'AB', 'AVG', 'H', "HR", 'RBI', 'R', 'SB', 'OBP'])
     row = 0
@@ -40,7 +40,7 @@ if photo and b_p == 'Batter':
             row += 1
     if photo_2:
         img_2 = Image.open(photo_2)
-        img_2 = img_2.resize((3600, 1200))
+        img_2 = img_2.resize((3600, 1260))
         strings_list_2 = pytesseract.image_to_string(img_2, config='--psm 6').split("'")
         for i, stat in enumerate(strings_list_2):
             if i > 0:
@@ -74,7 +74,7 @@ if photo and b_p == 'Batter':
 
 elif photo and b_p == 'Pichter':
     img = Image.open(photo)
-    img = img.resize((3600 , 1200))
+    img = img.resize((3600 , 1260))
     strings_list = pytesseract.image_to_string(img, config='--psm 6').split("'")
     df = pd.DataFrame(columns = ['NAME', 'IP', 'ERA', 'W', "L", 'SV', 'SO', 'BB', 'WHIP'])
     row = 0
@@ -104,7 +104,7 @@ elif photo and b_p == 'Pichter':
             row += 1
     if photo_2:
         img_2 = Image.open(photo_2)
-        img_2 = img_2.resize((3600, 1200))
+        img_2 = img_2.resize((3600, 1260))
         strings_list_2 = pytesseract.image_to_string(img_2, config='--psm 6').split("'")
         for i, stat in enumerate(strings_list_2):
             if i > 0:
