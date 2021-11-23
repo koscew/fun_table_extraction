@@ -133,7 +133,7 @@ elif photo and b_p == 'Pichter':
     st.write(df)
     cols = ' '.join(df.columns)
     df[cols] = df.apply(' '.join, axis=1)
-    df.loc[len(df)] = ['NAME', 'IP', 'ERA', 'W', "L", 'SV', 'SO', 'BB', 'WHIP']
+    df.loc[len(df)] = ['NAME', 'IP', 'ERA', 'W', "L", 'SV', 'SO', 'BB', 'WHIP', cols]
     st.write(df[cols])
 
 
