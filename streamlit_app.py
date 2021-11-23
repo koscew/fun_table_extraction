@@ -7,7 +7,7 @@ import re
 #b_p = st.sidebar.selectbox('Batter or Pichter', ['Batter'])
 b_p = st.sidebar.selectbox('Batter or Pichter', ['Batter', 'Pichter'])
 photo = st.file_uploader('Upload a photo')
-photo_2 = st.file_uploader('Upload a photo')
+photo_2 = st.file_uploader('Upload another photo')
 
 if photo and b_p == 'Batter':
     img = Image.open(photo)
