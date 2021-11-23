@@ -2,3 +2,4 @@ streamlit
 pytesseract
 Pillow
 tesseract
+tesseract-ocr
