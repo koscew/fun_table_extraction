@@ -69,7 +69,7 @@ if photo and b_p == 'Batter':
     st.write(df)
     cols = ' '.join(df.columns)
     df[cols] = df.apply(' '.join, axis=1)
-    df[len(df)] = ['NAME', 'AB', 'AVG', 'H', "HR", 'RBI', 'R', 'SB', 'OBP', cols]
+    df.loc[len(df)] = ['NAME', 'AB', 'AVG', 'H', "HR", 'RBI', 'R', 'SB', 'OBP', cols]
     st.write(df[cols])
 elif photo and b_p == 'Pichter':
     img = Image.open(photo)
