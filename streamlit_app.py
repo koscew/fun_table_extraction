@@ -65,7 +65,7 @@ if photo and b_p == 'Batter':
                     stats[8]
                 ]
                 row += 1
-    df = df.drop_duplicates(subset=['NAME'])
+    df = df.drop_duplicates(subset=['NAME']).reset_index(drop=True)
     st.write(df)
     cols = ' '.join(df.columns)
     df[cols] = df.apply(' '.join, axis=1)
@@ -129,7 +129,7 @@ elif photo and b_p == 'Pichter':
                     stats[8]
                 ]
                 row += 1
-    df = df.drop_duplicates(subset=['NAME'])
+    df = df.drop_duplicates(subset=['NAME']).reset_index(drop=True)
     st.write(df)
     cols = ' '.join(df.columns)
     df[cols] = df.apply(' '.join, axis=1)
