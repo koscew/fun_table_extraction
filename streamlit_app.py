@@ -65,7 +65,9 @@ if photo and b_p == 'Batter':
                     stats[8]
                 ]
                 row += 1
-    st.write(df.drop_duplicates(subset=['NAME']))
+    df = df.drop_duplicates(subset=['NAME'])
+    df['new'] = df.apply(''.join, axis=1)
+    st.write(df['new'])
 elif photo and b_p == 'Pichter':
     img = Image.open(photo)
     img = img.resize((2000, 900))
