@@ -4,7 +4,6 @@ import pandas as pd
 import streamlit as st
 import re
 
-#b_p = st.sidebar.selectbox('Batter or Pichter', ['Batter'])
 b_p = st.sidebar.selectbox('Batter or Pichter', ['Batter', 'Pichter'])
 photo = st.file_uploader('Upload a photo')
 photo_2 = st.file_uploader('Upload another photo')
@@ -18,14 +17,20 @@ if photo and b_p == 'Batter':
     for i, stat in enumerate(strings_list):
         if i > 0:
             stats = stat.replace('\n', ' ').split(' ')
-            if float(stats[2]) > 1:
-                stats[2] = str(float(stats[2]) / 1000)
-            else:
-                stats[2] = str(float(stats[2]))
-            if float(stats[8]) > 1:
-                stats[8] = str(float(stats[8]) / 1000)
-            else:
-                stats[8] = str(float(stats[8]))
+            try:
+                if float(stats[2]) > 1:
+                    stats[2] = str(float(stats[2]) / 1000)
+                else:
+                    stats[2] = str(float(stats[2]))
+            except ValueError:
+                pass
+            try:
+                if float(stats[8]) > 1:
+                        stats[8] = str(float(stats[8]) / 1000)
+                else:
+                    stats[8] = str(float(stats[8]))
+            except ValueError:
+                pass
             df.loc[row] = [
                 (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                 stats[1],
@@ -45,14 +50,20 @@ if photo and b_p == 'Batter':
         for i, stat in enumerate(strings_list_2):
             if i > 0:
                 stats = stat.replace('\n', ' ').split(' ')
-                if float(stats[2]) > 1:
-                    stats[2] = str(float(stats[2]) / 1000)
-                else:
-                    stats[2] = str(float(stats[2]))
-                if float(stats[8]) > 1:
-                    stats[8] = str(float(stats[8]) / 1000)
-                else:
-                    stats[8] = str(float(stats[8]))
+                try:
+                    if float(stats[2]) > 1:
+                        stats[2] = str(float(stats[2]) / 1000)
+                    else:
+                        stats[2] = str(float(stats[2]))
+                except ValueError:
+                    pass
+                try:
+                    if float(stats[8]) > 1:
+                        stats[8] = str(float(stats[8]) / 1000)
+                    else:
+                        stats[8] = str(float(stats[8]))
+                except ValueError:
+                    pass
                 df.loc[row] = [
                     (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list_2[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                     stats[1],
@@ -80,16 +91,21 @@ elif photo and b_p == 'Pichter':
     row = 0
     for i, stat in enumerate(strings_list):
         if i > 0:
-            #name = strings_list[i-1].replace('\n', ' ').split(' ')
             stats = stat.replace('\n', ' ').split(' ')
-            if float(stats[2]) > 22:
-                stats[2] = str(float(stats[2]) / 100)
-            else:
-                stats[2] = str(float(stats[2]))
-            if float(stats[8]) > 22:
-                stats[8] = str(float(stats[8]) / 100)
-            else:
-                stats[8] = str(float(stats[8]))
+            try:
+                if float(stats[2]) > 22:
+                    stats[2] = str(float(stats[2]) / 100)
+                else:
+                    stats[2] = str(float(stats[2]))
+            except ValueError:
+                pass
+            try:
+                if float(stats[8]) > 22:
+                    stats[8] = str(float(stats[8]) / 100)
+                else:
+                    stats[8] = str(float(stats[8]))
+            except ValueError:
+                pass
             df.loc[row] = [
                 (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                 stats[1],
@@ -109,14 +125,20 @@ elif photo and b_p == 'Pichter':
         for i, stat in enumerate(strings_list_2):
             if i > 0:
                 stats = stat.replace('\n', ' ').split(' ')
-                if float(stats[2]) > 1:
-                    stats[2] = str(float(stats[2]) / 1000)
-                else:
-                    stats[2] = str(float(stats[2]))
-                if float(stats[8]) > 1:
-                    stats[8] = str(float(stats[8]) / 1000)
-                else:
-                    stats[8] = str(float(stats[8]))
+                try:
+                    if float(stats[2]) > 1:
+                        stats[2] = str(float(stats[2]) / 1000)
+                    else:
+                        stats[2] = str(float(stats[2]))
+                except ValueError:
+                    pass
+                try:
+                    if float(stats[8]) > 1:
+                        stats[8] = str(float(stats[8]) / 1000)
+                    else:
+                        stats[8] = str(float(stats[8]))
+                except ValueError:
+                    pass
                 df.loc[row] = [
                     (re.findall(r'[A-Z]\.[A-Z][a-z-. ]*[A-Za-z]*', strings_list_2[i-1])[-1] + "'" + stats[0]).replace(' ',''),
                     stats[1],
